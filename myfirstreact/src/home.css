@@ -1,0 +1,229 @@
+.active{
+    background-color: peru;
+}
+button a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.button:hover{
+    background-color: peru;
+}
+.kontaktierenButton{
+    margin-top: 10px;
+    background-color: orange;
+    color: #ffffff;
+    margin-left: 18%;
+    height: 50px;
+    width: 100px;
+}
+
+.leiste a {
+    display: block;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    font-size: 280%
+}
+.leiste a:hover{
+    background-color: peru; 
+}
+.leiste{
+    float: left;
+    background-color: orange;             
+    border-right: 1px solid #ffffff;
+}
+.leiste:last-child{
+    border: none; 
+    float: right;
+    margin-right: 18%;
+}
+.leiste:first-child{
+    margin-left: 18%;
+}
+.leisteListe{
+    height: 7%;
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    background-color: orange; 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.innovationenBilderLinks{
+    border-left: 3px solid darkorange;
+    float: left;
+}
+.innovationenBilderRechts{
+    border-right: 3px solid darkorange;
+    float: right;
+}
+.überschriftLinks{
+    text-decoration: none;
+    float: left;
+    width: 100%;
+    font-size: 250%;
+    color: darkorange;
+}
+.textundüberschriftBildLinks{
+    height: 340px;
+    margin-left: 35%;                
+    padding-left: 2%;
+}
+
+.überschriftRechts{
+    text-decoration: none;
+    float: right;
+    width: 100%;
+    font-size: 250%;
+    color: darkorange;
+}
+.textundüberschriftBildRechts{
+    height: 340px;
+    margin-right: 35%;
+    padding-right: 2%;
+}
+
+.seite{
+    margin-bottom: 3%;
+    margin-right: 18%;
+    margin-left: 18%;
+}
+.textLinks{
+    padding-top: 3%;
+    text-decoration: none;
+    font-size: 160%;
+    color: black;
+    display: inline-block;
+    height: 280px;
+    text-align: justify;
+}
+.textRechts{
+    padding-top: 3%;
+    text-decoration: none;
+    font-size: 160%;
+    color: black;
+    display: inline-block;
+    height: 280px;
+    text-align: justify;
+}
+.bildLeiste{
+    margin-left: 18%;
+    margin-right: 18%;
+    width: 64%;
+    color: darkorange;
+    text-align: center;
+    font-size: 600%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.deutscheInnovationen{
+    width: 388.55px;
+    height: 323px;
+    margin-bottom: 7%;
+}
+.alleInnovationen{               
+    width: 388.55px;
+    height: 323px;
+    margin-bottom: 7%;
+}
+.geschenkideen{
+    margin-bottom: 7%;
+    width: 388.55px;
+    height: 323px;
+}
+.kategorien{
+    margin-left: 18%;
+    margin-right: 18%;
+    width: 64%;
+    text-align: center; 
+}
+body{
+    background-color: #ffffff;
+}
+#buttonEins{
+    background-color: orange;
+    height: 8%;
+    width: 13%;
+}
+#buttonZwei{
+    background-color: orange;
+    height: 8%;
+    width: 13%;
+}
+#buttonDrei{
+    background-color: orange;
+    height: 8%;
+    width: 13%;
+}
+#buttonVier{
+    background-color: orange;
+    height: 8%;
+    width: 13%;
+}
+#buttonEins :hover{
+    background-color: peru;
+}
+#buttonZwei :hover{
+    background-color: peru;
+}
+#buttonDrei :hover{
+    background-color: peru;
+}
+#buttonVier :hover{
+    background-color: peru;
+}
+.formLogin{
+    text-align: center;
+}
+.loginInput{
+    font-size: 200%;
+    border: 2px solid orange;
+    margin-bottom: 1%;
+}
+.loginButton{
+    font-size: 200%;
+    background-color: orange;
+    color: #ffffff;
+}
+.loginButton :hover{
+    background-color: peru;
+}
+.impressum{
+    background-color: lightblue;
+    border-top: 2px solid darkorange;
+    width: 100%;
+    /* height: 15%; */
+}
+.impressumText{
+    font-size: 130%;
+    margin-left: 18%;
+    margin-right: 18%;
+    padding-top: 0%;
+    padding-bottom: 1%;
+}
+.jetztregestrieren{
+    text-align: center;
+}
+.jetztregestrieren a{
+    color: orange;
+}
+.nachrichtenListe {
+    height: 100%;
+    width: 100%;
+    list-style-type: none;
+    margin-top: 2%;
+    padding: 0;
+    overflow: hidden;
+}
+#receiverSelect{
+    width: 100%;
+    height: 5%;
+}
+#subject{
+    width: 100%;
+    height: 5%;
+}
+#nachrichtenÜberschrift{
+    margin-left: 18%;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <style>
+        .login-form {
+            width: 300px;
+            margin: 0 auto;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        .login-form h1 {
+            text-align: center;
+            color: #4d4d4d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+
+        .login-form input[type="password"],
+        .login-form input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #535b63;
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="home.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // localStorage.clear();
+            console.log("document is ready")
+            $("#submit").click(function () {
+                var vusername = $("#username").val();
+                var vpassword = $("#password").val();
+                if (vusername == "" && vpassword == "") {
+                    alert("Please fill out the form");
+                } else if (vusername == "" && vpassword !== "") {
+                    alert("Username field is required")
+                } else if (vusername !== "" && vpassword == "") {
+                    alert("Password field is required")
+                } else {
+                    $.post("/login", {
+                            username: vusername,
+                            password: vpassword
+                        })
+                        .done(function (data) {
+                            // localStorage.clear();
+                            location.href = "http://172.20.20.75:5000/nachrichtSenden.html";
+                            console.log("JOO");
+                            console.log(data);
+                            JSON.stringify(data);
+                            // localStorage.clear();
+                            localStorage.setItem = (data);
+                            document.getElementById("result").innerHTML = localStorage;
+                        })
+                        .fail(function (data) {
+                            console.log("MEH");
+                            console.log(data);
+                        });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Ein mega geiler Messenger</a>
+            </div>
+            <ul class="nav navbar-nav">
+            </ul>
+        </div>
+    </nav>
+
+    <div class="login-form">
+        <h1>Login Form</h1>
+        <input type="text" name="username" placeholder="Username" id="username" required>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        <input type="button" name="submit" id="submit" value="Absenden">
+        <p class="jetztregestrieren"> Noch keinen Account? <a href="register.html"> Jetzt regestrieren!
+            </a></p>
+    </div>
+
+    <p id="result"></p>
+</body>
+
+</html>

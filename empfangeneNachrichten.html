@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Empfangen</title>
+
+    <link rel="stylesheet" href="home.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var ls = localStorage.getItem('setItem');
+        if(ls === null){
+            location.replace("http://172.20.20.75:5000/login.html");
+        }
+        $(document).ready(function () {
+            $.ajax({
+                    url: "/zeigeEmpfangen",
+                    type: "GET",
+                    data: {
+                        token: localStorage.getItem('setItem'),
+                    }
+                })
+                .done(function (data) {
+                    console.log(data);
+                    var list = document.getElementById("nachrichtenListe")
+
+                    // die buttons erstellen, die aber noch keinen onclick haben
+                    // im get zeigeEmpfangenNachrichten wird dann die uhrzeit, in der 
+                    // die Nachricht gelesen wurde aus der DB geholt 
+
+                    for (var i = 0; i < data.length; i++) {
+                        var item = document.createElement("li");
+                        var btn = document.createElement("button");
+                        var loeschenBtn = document.createElement("button");
+                        var nachrichtDiv = document.createElement("h5");
+                        btn.innerHTML = data[i].von;
+                        loeschenBtn.innerHTML = "Loeschen";
+                        nachrichtDiv.innerHTML = data[i].message;
+                        btn.style =
+                            "width: 90%; text-align: left; border: 1px solid orange; color: black; background-color: white";
+                        loeschenBtn.style =
+                            "width: 10%; text-align: center; color: white; background-color: red";
+                        nachrichtDiv.style = "display:none";
+                        btn.id = "btn" + i;
+                        loeschenBtn.id = "loeschenBtn" + i;
+                        nachrichtDiv.id = "nachrichtDiv" + i;
+                        item.style =
+                            " margin-bottom: 1%; margin-left: 18%; margin-right: 18%;"
+                        item.appendChild(btn);
+                        item.appendChild(loeschenBtn);
+                        item.appendChild(nachrichtDiv);
+                        list.appendChild(item);
+                        console.log(list);
+
+                        const iNeu = i;
+                        const nachrichtDivNeu = document.getElementById("nachrichtDiv" + iNeu).textContent;
+                        $("#btn" + iNeu).on("click", function (event) {
+                            var d = new Date();
+                            $.ajax({
+                                    url: "/zeigeEmpfangenNachricht",
+                                    type: "GET",
+                                    data: {
+                                        token: localStorage.getItem('setItem'),
+                                        date: d.getHours() + ":" + d.getMinutes(),
+                                        i: iNeu
+                                    }
+                                })
+                                .done(function (data) {
+                                    console.log(data);
+                                    $("#nachrichtDiv" + iNeu).toggle();
+                                })
+                                .fail(function (data) {
+                                    console.log("fail");
+                                })
+                        })
+
+                        $("#loeschenBtn" + iNeu).on("click", function (event) {
+                            console.log("HALOALALALLSDOSOSO");
+                            console.log(nachrichtDivNeu);
+                            $.ajax({
+                                    url: "/loescheNachrichtReceiver",
+                                    type: "GET",
+                                    data: {
+                                        token: localStorage.getItem('setItem'),
+                                        nachrichtDiv: nachrichtDivNeu,
+                                        i: iNeu
+                                    }
+                                })
+                                .done(function (data) {
+                                    location.reload();
+                                    console.log("alles gut");
+                                })
+                                .fail(function (data) {
+                                    console.log("alles schaise");
+                                    console.log(data);
+                                })
+                        })
+                    };
+                })
+                .fail(function (data) {
+                    console.log("fail");
+                })
+        });
+    </script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Ein mega geiler Messenger</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="nachrichtSenden.html">Senden</a></li>
+                <li><a href="gesendeteNachrichten.html">Gesendet</a></li>
+                <li class="active"><a href="empfangeneNachrichten.html">Empfangen</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 id="nachrichtenÜberschrift">Empfangene Nachrichten</h1>
+    <ul class="nachrichtenListe" id="nachrichtenListe"></ul>
+
+</body>
+
+</html>
